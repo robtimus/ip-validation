@@ -47,6 +47,9 @@ public class CharSequenceIPAddressValidator implements ConstraintValidator<IPAdd
         if (value == null) {
             return true;
         }
+        if (ipRanges.isEmpty()) {
+            return com.github.robtimus.net.ip.IPAddress.isIPAddress(value);
+        }
         return IPAddressFormatter.anyVersionWithDefaults().tryParse(value)
                 .map(ip -> isValidIPAddress(ip, ipRanges, message, context))
                 .orElse(false);

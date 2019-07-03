@@ -47,6 +47,9 @@ public class CharSequenceIPv6AddressValidator implements ConstraintValidator<IPv
         if (value == null) {
             return true;
         }
+        if (ipRanges.isEmpty()) {
+            return com.github.robtimus.net.ip.IPv6Address.isIPv6Address(value);
+        }
         return IPAddressFormatter.ipv6WithDefaults().tryParse(value)
                 .map(ip -> isValidIPv6Address(ip, ipRanges, message, context))
                 .orElse(false);

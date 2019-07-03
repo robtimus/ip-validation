@@ -47,6 +47,9 @@ public class CharSequenceIPv4AddressValidator implements ConstraintValidator<IPv
         if (value == null) {
             return true;
         }
+        if (ipRanges.isEmpty()) {
+            return com.github.robtimus.net.ip.IPv4Address.isIPv4Address(value);
+        }
         return IPAddressFormatter.ipv4().tryParse(value)
                 .map(ip -> isValidIPv4Address(ip, ipRanges, message, context))
                 .orElse(false);
