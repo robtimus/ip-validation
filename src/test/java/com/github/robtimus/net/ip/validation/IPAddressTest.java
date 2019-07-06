@@ -26,7 +26,6 @@ import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
-import com.github.robtimus.net.ip.validation.IPAddress;
 
 @SuppressWarnings({ "javadoc", "nls" })
 public class IPAddressTest extends AbstractConstraintTest {

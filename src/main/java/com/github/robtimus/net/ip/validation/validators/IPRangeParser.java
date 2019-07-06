@@ -40,7 +40,7 @@ final class IPRangeParser {
         throw new Error("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
     }
 
-    static Collection<IPRange<?>> parseIPRanges(com.github.robtimus.net.ip.validation.IPAddress  constraintAnnotation) {
+    static Collection<IPRange<?>> parseIPRanges(com.github.robtimus.net.ip.validation.IPAddress constraintAnnotation) {
         return Arrays.stream(constraintAnnotation.ipRanges())
                 .map(IPRangeParser::parseIPRange)
                 .collect(toList());
@@ -59,7 +59,7 @@ final class IPRangeParser {
         return ((IP) from).to((IP) to);
     }
 
-    static Collection<IPv4Range> parseIPv4Ranges(com.github.robtimus.net.ip.validation.IPv4Address  constraintAnnotation) {
+    static Collection<IPv4Range> parseIPv4Ranges(com.github.robtimus.net.ip.validation.IPv4Address constraintAnnotation) {
         return Arrays.stream(constraintAnnotation.ipRanges())
                 .map(IPRangeParser::parseIPv4Range)
                 .collect(toList());
@@ -69,7 +69,7 @@ final class IPRangeParser {
         return parseIPRange(ipRange, IPv4Subnet::valueOf, IPAddressFormatter.ipv4(), IPv4Address::to);
     }
 
-    static Collection<IPv6Range> parseIPv6Ranges(com.github.robtimus.net.ip.validation.IPv6Address  constraintAnnotation) {
+    static Collection<IPv6Range> parseIPv6Ranges(com.github.robtimus.net.ip.validation.IPv6Address constraintAnnotation) {
         return Arrays.stream(constraintAnnotation.ipRanges())
                 .map(IPRangeParser::parseIPv6Range)
                 .collect(toList());

@@ -43,7 +43,7 @@ import com.github.robtimus.net.ip.validation.validators.IPAddressIPv4AddressVali
  * @author Rob Spoor
  */
 @Documented
-@Constraint(validatedBy = { CharSequenceIPv4AddressValidator.class, IPAddressIPv4AddressValidator.class, })
+@Constraint(validatedBy = { CharSequenceIPv4AddressValidator.class, IPAddressIPv4AddressValidator.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Repeatable(List.class)
