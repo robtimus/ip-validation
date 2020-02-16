@@ -76,7 +76,7 @@
     <version.hamcrest>2.2</version.hamcrest>
     <version.hibernate>5.4.3.Final</version.hibernate>
     <version.ip-utils>1.2</version.ip-utils>
-    <version.junit>5.5.2</version.junit>
+    <version.junit>5.6.0</version.junit>
     <version.mockito>3.2.4</version.mockito>
     <version.validation>1.1.0.Final</version.validation>
 
