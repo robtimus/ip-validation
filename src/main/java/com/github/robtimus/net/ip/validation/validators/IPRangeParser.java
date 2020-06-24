@@ -88,8 +88,11 @@ final class IPRangeParser {
             return subnetParser.apply(ipRange);
         }
 
-        int index;
-        if (!ipRange.startsWith("[") || !ipRange.endsWith("]") || (index = ipRange.indexOf("...")) == -1) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        if (!ipRange.startsWith("[") || !ipRange.endsWith("]")) { //$NON-NLS-1$ //$NON-NLS-2$
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+        }
+        int index = ipRange.indexOf("..."); //$NON-NLS-1$
+        if (index == -1) {
             throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
         }
         ParsePosition position = new ParsePosition(1);
