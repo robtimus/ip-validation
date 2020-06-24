@@ -30,11 +30,11 @@ import com.github.robtimus.net.ip.IPv4Subnet;
 import com.github.robtimus.net.ip.IPv6Address;
 import com.github.robtimus.net.ip.Subnet;
 
-@SuppressWarnings({ "javadoc", "nls" })
-public class IPRangeParserTest {
+@SuppressWarnings("nls")
+class IPRangeParserTest {
 
     @TestFactory
-    public DynamicTest[] testParseIPRange() {
+    DynamicTest[] testParseIPRange() {
         return new DynamicTest[] {
                 testParseIPRangeInvalid(""),
                 testParseIPRange("192.168.0.0/24", Subnet.valueOf("192.168.0.0", 24)),
@@ -83,7 +83,7 @@ public class IPRangeParserTest {
     }
 
     @TestFactory
-    public DynamicTest[] testParseIPv4Range() {
+    DynamicTest[] testParseIPv4Range() {
         return new DynamicTest[] {
                 testParseIPv4RangeInvalid(""),
                 testParseIPv4Range("192.168.0.0/24", IPv4Subnet.valueOf("192.168.0.0", 24)),
@@ -131,7 +131,7 @@ public class IPRangeParserTest {
     }
 
     @TestFactory
-    public DynamicTest[] testParseIPv6Range() {
+    DynamicTest[] testParseIPv6Range() {
         return new DynamicTest[] {
                 testParseIPv6RangeInvalid(""),
                 testParseIPv6RangeInvalidCIDR("192.168.0.0/24"),

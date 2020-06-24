@@ -29,7 +29,7 @@ final class IPv6AddressValidator {
     private static final String MESSAGE_WITH_IP_RANGES = "{com.github.robtimus.net.ip.validation.IPv6Address.message.withIPRanges}"; //$NON-NLS-1$
 
     private IPv6AddressValidator() {
-        throw new Error("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
+        throw new IllegalStateException("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
     }
 
     static boolean isValidIPv6Address(IPAddress<?> ipAddress, Collection<IPv6Range> ipRanges, String message, ConstraintValidatorContext context) {

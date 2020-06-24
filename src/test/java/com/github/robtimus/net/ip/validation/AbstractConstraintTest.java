@@ -45,13 +45,13 @@ abstract class AbstractConstraintTest {
             (ConstraintViolation<?> v) -> v.getConstraintDescriptor().getAnnotation().annotationType().toString());
     private static final Comparator<ConstraintViolation<?>> COMPARATOR = BY_PATH.thenComparing(BY_ANNOTATION);
 
-    protected <T> List<ConstraintViolation<T>> validate(Class<T> beanType, String propertyName, Object value, Class<?>... groups) {
+    <T> List<ConstraintViolation<T>> validate(Class<T> beanType, String propertyName, Object value, Class<?>... groups) {
         return VALIDATOR.validateValue(beanType, propertyName, value, groups).stream()
                 .sorted(COMPARATOR)
                 .collect(toList());
     }
 
-    protected void assertAnnotation(ConstraintViolation<?> violation, Class<? extends Annotation> annotationType) {
+    void assertAnnotation(ConstraintViolation<?> violation, Class<? extends Annotation> annotationType) {
         assertNotNull(violation.getConstraintDescriptor());
         assertNotNull(violation.getConstraintDescriptor().getAnnotation());
         assertEquals(annotationType, violation.getConstraintDescriptor().getAnnotation().annotationType());

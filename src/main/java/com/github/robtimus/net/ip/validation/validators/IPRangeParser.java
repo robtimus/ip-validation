@@ -37,7 +37,7 @@ import com.github.robtimus.net.ip.Subnet;
 final class IPRangeParser {
 
     private IPRangeParser() {
-        throw new Error("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
+        throw new IllegalStateException("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
     }
 
     static Collection<IPRange<?>> parseIPRanges(com.github.robtimus.net.ip.validation.IPAddress constraintAnnotation) {

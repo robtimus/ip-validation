@@ -29,7 +29,7 @@ final class IPv4AddressValidator {
     private static final String MESSAGE_WITH_IP_RANGES = "{com.github.robtimus.net.ip.validation.IPv4Address.message.withIPRanges}"; //$NON-NLS-1$
 
     private IPv4AddressValidator() {
-        throw new Error("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
+        throw new IllegalStateException("cannot create instances of " + getClass().getName()); //$NON-NLS-1$
     }
 
     static boolean isValidIPv4Address(IPAddress<?> ipAddress, Collection<IPv4Range> ipRanges, String message, ConstraintValidatorContext context) {

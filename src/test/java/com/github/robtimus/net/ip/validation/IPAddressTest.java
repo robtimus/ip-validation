@@ -27,20 +27,20 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 
-@SuppressWarnings({ "javadoc", "nls" })
-public class IPAddressTest extends AbstractConstraintTest {
+@SuppressWarnings("nls")
+class IPAddressTest extends AbstractConstraintTest {
 
     @Nested
-    public class ForCharSequence {
+    class ForCharSequence {
 
         @Test
-        public void testNull() {
+        void testNull() {
             List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequence", null);
             assertEquals(Collections.emptyList(), violations);
         }
 
         @Test
-        public void testInvalidIPAddress() {
+        void testInvalidIPAddress() {
             List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequence", "abc");
             assertEquals(1, violations.size());
 
@@ -50,13 +50,13 @@ public class IPAddressTest extends AbstractConstraintTest {
         }
 
         @Test
-        public void testValidWithoutIPRanges() {
+        void testValidWithoutIPRanges() {
             List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequence", "127.0.0.1");
             assertEquals(Collections.emptyList(), violations);
         }
 
         @TestFactory
-        public DynamicTest[] testValidWithSubnet() {
+        DynamicTest[] testValidWithSubnet() {
             return new DynamicTest[] {
                     dynamicTest("contains", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequenceWithSubnet", "192.168.0.13");
@@ -74,7 +74,7 @@ public class IPAddressTest extends AbstractConstraintTest {
         }
 
         @TestFactory
-        public DynamicTest[] testValidWithIPRange() {
+        DynamicTest[] testValidWithIPRange() {
             return new DynamicTest[] {
                     dynamicTest("contains", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequenceWithIPRange", "192.168.10.11");
@@ -92,7 +92,7 @@ public class IPAddressTest extends AbstractConstraintTest {
         }
 
         @TestFactory
-        public DynamicTest[] testInvalidWithCustomMessage() {
+        DynamicTest[] testInvalidWithCustomMessage() {
             return new DynamicTest[] {
                     dynamicTest("invalid format", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "charSequenceWithCustomMessage", "abc");
@@ -115,22 +115,22 @@ public class IPAddressTest extends AbstractConstraintTest {
     }
 
     @Nested
-    public class ForIPAddress {
+    class ForIPAddress {
 
         @Test
-        public void testNull() {
+        void testNull() {
             List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "ipAddress", null);
             assertEquals(Collections.emptyList(), violations);
         }
 
         @Test
-        public void testValidWithoutIPranges() {
+        void testValidWithoutIPranges() {
             List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "ipAddress", ip("127.0.0.1"));
             assertEquals(Collections.emptyList(), violations);
         }
 
         @TestFactory
-        public DynamicTest[] testValidWithSubnet() {
+        DynamicTest[] testValidWithSubnet() {
             return new DynamicTest[] {
                     dynamicTest("contains", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "ipAddressWithSubnet", ip("192.168.0.13"));
@@ -148,7 +148,7 @@ public class IPAddressTest extends AbstractConstraintTest {
         }
 
         @TestFactory
-        public DynamicTest[] testValidWithIPRange() {
+        DynamicTest[] testValidWithIPRange() {
             return new DynamicTest[] {
                     dynamicTest("contains", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "ipAddressWithIPRange", ip("192.168.10.11"));
@@ -166,7 +166,7 @@ public class IPAddressTest extends AbstractConstraintTest {
         }
 
         @TestFactory
-        public DynamicTest[] testInvalidWithCustomMessage() {
+        DynamicTest[] testInvalidWithCustomMessage() {
             return new DynamicTest[] {
                     dynamicTest("doesn't contain", () -> {
                         List<ConstraintViolation<TestClass>> violations = validate(TestClass.class, "ipAddressWithCustomMessage",
