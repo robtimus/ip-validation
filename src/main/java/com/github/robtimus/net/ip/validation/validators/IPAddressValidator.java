@@ -18,7 +18,7 @@
 package com.github.robtimus.net.ip.validation.validators;
 
 import java.util.Collection;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidatorContext;
 import com.github.robtimus.net.ip.IPAddress;
 import com.github.robtimus.net.ip.IPRange;
 

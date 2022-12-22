@@ -25,12 +25,12 @@ import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.util.Comparator;
 import java.util.List;
-import javax.validation.ConstraintViolation;
-import javax.validation.Path;
-import javax.validation.Path.Node;
-import javax.validation.TraversableResolver;
-import javax.validation.Validation;
-import javax.validation.Validator;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Path;
+import jakarta.validation.Path.Node;
+import jakarta.validation.TraversableResolver;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 abstract class AbstractConstraintTest {
 
