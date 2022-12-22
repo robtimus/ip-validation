@@ -53,7 +53,7 @@ final class IPRangeParser {
     @SuppressWarnings("unchecked")
     private static <IP extends IPAddress<IP>> IPRange<?> createRange(IPAddress<?> from, IPAddress<?> to, String ipRange) {
         if (from.getClass() != to.getClass()) {
-            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         // from and to are of the same class, so the cast is safe
         return ((IP) from).to((IP) to);
@@ -89,21 +89,21 @@ final class IPRangeParser {
         }
 
         if (!ipRange.startsWith("[") || !ipRange.endsWith("]")) { //$NON-NLS-1$ //$NON-NLS-2$
-            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         int index = ipRange.indexOf("..."); //$NON-NLS-1$
         if (index == -1) {
-            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         ParsePosition position = new ParsePosition(1);
         IP from = formatter.parse(ipRange, position);
         if (from == null || position.getIndex() != index) {
-            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         position.setIndex(index + 3);
         IP to = formatter.parse(ipRange, position);
         if (to == null || position.getIndex() != ipRange.length() - 1) {
-            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange.get(ipRange));
+            throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         return ipRangeConstructor.apply(from, to);
     }

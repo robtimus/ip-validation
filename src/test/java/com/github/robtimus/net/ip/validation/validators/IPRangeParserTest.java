@@ -71,14 +71,14 @@ class IPRangeParserTest {
     private DynamicTest testParseIPRangeInvalid(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPRange(ipRange));
-            assertEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 
     private DynamicTest testParseIPRangeInvalidCIDR(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPRange(ipRange));
-            assertNotEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertNotEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 
@@ -119,14 +119,14 @@ class IPRangeParserTest {
     private DynamicTest testParseIPv4RangeInvalid(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPv4Range(ipRange));
-            assertEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 
     private DynamicTest testParseIPv4RangeInvalidCIDR(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPv4Range(ipRange));
-            assertNotEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertNotEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 
@@ -168,14 +168,14 @@ class IPRangeParserTest {
     private DynamicTest testParseIPv6RangeInvalid(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPv6Range(ipRange));
-            assertEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 
     private DynamicTest testParseIPv6RangeInvalidCIDR(String ipRange) {
         return dynamicTest(ipRange.isEmpty() ? "empty" : ipRange, () -> {
             IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> IPRangeParser.parseIPv6Range(ipRange));
-            assertNotEquals(Messages.IPAddress.invalidIPRange.get(ipRange), exception.getMessage());
+            assertNotEquals(Messages.IPAddress.invalidIPRange(ipRange), exception.getMessage());
         });
     }
 }
