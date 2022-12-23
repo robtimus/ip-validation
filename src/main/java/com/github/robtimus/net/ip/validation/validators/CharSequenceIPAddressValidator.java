@@ -27,7 +27,7 @@ import com.github.robtimus.net.ip.IPRange;
 import com.github.robtimus.net.ip.validation.IPAddress;
 
 /**
- * A {@link IPAddress} constraint validator for {@link CharSequence}.
+ * An {@link IPAddress} constraint validator for {@link CharSequence}.
  *
  * @author Rob Spoor
  */

@@ -27,7 +27,7 @@ import com.github.robtimus.net.ip.IPv4Range;
 import com.github.robtimus.net.ip.validation.IPv4Address;
 
 /**
- * A {@link IPv4Address} constraint validator for {@link CharSequence}.
+ * An {@link IPv4Address} constraint validator for {@link CharSequence}.
  *
  * @author Rob Spoor
  */

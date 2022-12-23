@@ -27,7 +27,7 @@ import com.github.robtimus.net.ip.IPv6Range;
 import com.github.robtimus.net.ip.validation.IPv6Address;
 
 /**
- * A {@link IPv6Address} constraint validator for {@link CharSequence}.
+ * An {@link IPv6Address} constraint validator for {@link CharSequence}.
  *
  * @author Rob Spoor
  */
