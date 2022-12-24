@@ -146,7 +146,7 @@
           <artifactId>maven-javadoc-plugin</artifactId>
           <configuration>
             <links>
-              <link>https://docs.oracle.com/javaee/7/api/</link>
+              <link>https://jakarta.ee/specifications/platform/9/apidocs/</link>
               <link>https://robtimus.github.io/ip-utils/apidocs/</link>
             </links>
           </configuration>
