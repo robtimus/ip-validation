@@ -51,12 +51,12 @@ final class IPRangeParser {
     }
 
     @SuppressWarnings("unchecked")
-    private static <IP extends IPAddress<IP>> IPRange<?> createRange(IPAddress<?> from, IPAddress<?> to, String ipRange) {
+    private static <I extends IPAddress<I>> IPRange<?> createRange(IPAddress<?> from, IPAddress<?> to, String ipRange) {
         if (from.getClass() != to.getClass()) {
             throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         // from and to are of the same class, so the cast is safe
-        return ((IP) from).to((IP) to);
+        return ((I) from).to((I) to);
     }
 
     static Collection<IPv4Range> parseIPv4Ranges(com.github.robtimus.net.ip.validation.IPv4Address constraintAnnotation) {
@@ -79,10 +79,10 @@ final class IPRangeParser {
         return parseIPRange(ipRange, IPv6Subnet::valueOf, IPAddressFormatter.ipv6WithDefaults(), IPv6Address::to);
     }
 
-    private static <IP extends IPAddress<?>, R extends IPRange<?>> R parseIPRange(String ipRange,
+    private static <I extends IPAddress<?>, R extends IPRange<?>> R parseIPRange(String ipRange,
             Function<CharSequence, R> subnetParser,
-            IPAddressFormatter<IP> formatter,
-            BiFunction<IP, IP, R> ipRangeConstructor) {
+            IPAddressFormatter<I> formatter,
+            BiFunction<I, I, R> ipRangeConstructor) {
 
         if (ipRange.indexOf('/') != -1) {
             return subnetParser.apply(ipRange);
@@ -96,12 +96,12 @@ final class IPRangeParser {
             throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         ParsePosition position = new ParsePosition(1);
-        IP from = formatter.parse(ipRange, position);
+        I from = formatter.parse(ipRange, position);
         if (from == null || position.getIndex() != index) {
             throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
         position.setIndex(index + 3);
-        IP to = formatter.parse(ipRange, position);
+        I to = formatter.parse(ipRange, position);
         if (to == null || position.getIndex() != ipRange.length() - 1) {
             throw new IllegalArgumentException(Messages.IPAddress.invalidIPRange(ipRange));
         }
