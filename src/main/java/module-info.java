@@ -15,6 +15,9 @@
  * limitations under the License.
  */
 
+/**
+ * Contains validation constraints for IP addresses.
+ */
 module com.github.robtimus.ip.validation {
     requires transitive com.github.robtimus.ip.utils;
     requires transitive jakarta.validation;

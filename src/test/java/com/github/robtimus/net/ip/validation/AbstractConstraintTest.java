@@ -31,22 +31,37 @@ import jakarta.validation.Path.Node;
 import jakarta.validation.TraversableResolver;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 abstract class AbstractConstraintTest {
-
-    private static final Validator VALIDATOR = Validation.byDefaultProvider()
-            .configure()
-            .traversableResolver(new SimpleTraversableResolver())
-            .buildValidatorFactory()
-            .getValidator();
 
     private static final Comparator<ConstraintViolation<?>> BY_PATH = comparing((ConstraintViolation<?> v) -> v.getPropertyPath().toString());
     private static final Comparator<ConstraintViolation<?>> BY_ANNOTATION = comparing(
             (ConstraintViolation<?> v) -> v.getConstraintDescriptor().getAnnotation().annotationType().toString());
     private static final Comparator<ConstraintViolation<?>> COMPARATOR = BY_PATH.thenComparing(BY_ANNOTATION);
 
+    private static ValidatorFactory validatorFactory;
+    private static Validator validator;
+
+    @BeforeAll
+    static void setup() {
+        validatorFactory = Validation.byDefaultProvider()
+                .configure()
+                .traversableResolver(new SimpleTraversableResolver())
+                .buildValidatorFactory();
+
+        validator = validatorFactory.getValidator();
+    }
+
+    @AfterAll
+    static void cleanup() {
+        validatorFactory.close();
+    }
+
     <T> List<ConstraintViolation<T>> validate(Class<T> beanType, String propertyName, Object value, Class<?>... groups) {
-        return VALIDATOR.validateValue(beanType, propertyName, value, groups).stream()
+        return validator.validateValue(beanType, propertyName, value, groups).stream()
                 .sorted(COMPARATOR)
                 .collect(toList());
     }
